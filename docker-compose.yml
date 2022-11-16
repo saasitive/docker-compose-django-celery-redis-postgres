@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+    server:
+        restart: unless-stopped
+        build:
+            context: .
+            dockerfile: ./docker/backend/Dockerfile
+        entrypoint: /app/docker/backend/entrypoint.sh
+        expose:
+            - 8000     
+    redis:
+        restart: unless-stopped
+        image: redis:7.0.5-alpine 
+        expose:
+            - 6379
+    
