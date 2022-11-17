@@ -28,3 +28,4 @@ class AssignmentViewSet(viewsets.ModelViewSet):
 
         except Exception as e:
             raise APIException(str(e))
+
