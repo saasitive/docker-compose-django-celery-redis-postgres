@@ -7,6 +7,7 @@ from assignments.models import Assignment
 from assignments.serializers import AssignmentSerializer
 from assignments.tasks import task_execute
 
+
 class AssignmentViewSet(viewsets.ModelViewSet):
 
     serializer_class = AssignmentSerializer
@@ -21,9 +22,9 @@ class AssignmentViewSet(viewsets.ModelViewSet):
 
                 # create task params
                 job_params = {"db_id": instance.id}
-                
-                # submit task for background execution 
+
+                # submit task for background execution
                 transaction.on_commit(lambda: task_execute.delay(job_params))
-                
+
         except Exception as e:
             raise APIException(str(e))
